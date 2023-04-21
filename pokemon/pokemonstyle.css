@@ -21,18 +21,7 @@ header h1{
     text-align: center;
     padding-top: 15px;
 }
-div{
-    width: 250px;
-    height: 300px;
-    border: solid;
-    margin: 10px;
-}
 div img{
     width: 200px;
     height: 200px;
-    margin-top: 5px;
-    margin-left: 25px;
-}
-div h2, p{
-    text-align: center;
 }
