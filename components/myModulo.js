@@ -1,11 +1,16 @@
 export default{
+    data: 'https://pokeapi.co/api/v2/pokemon',
     pokemon(){
-        const ws = new Worker("storage/wsModulo.js", {type:"module"});
-        ws.postMessage({module:"pokemons"});
+        const ws = new Worker("storage/wsModulo.js", {type:"module"}); 
+        let count = 0;
+        ws.postMessage({module:"pokemons", data: this.data});
+        ws.postMessage({module:"botones", data: this.data});
+        let id = [".botones", "#pokemons"]
         ws.addEventListener("message", (e)=>{
             let doc = new DOMParser().parseFromString(e.data, "text/html");
-            document.querySelector("main").append(...doc.body.children);
-            ws.terminate();
+            document.querySelector(id[count]).append(...doc.body.children);
+            (id.length-1==count) ? ws.terminate(): undefined;
+            count++;
         });
     }
 }
